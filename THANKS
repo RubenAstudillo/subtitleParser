@@ -1,0 +1,3 @@
+This wouldn't be possible without the indirect help of  Sebastiaan Visser whose
+subtitles package give me the idea of a separate package just for parsing
+subtitle files. He also provided me with the datatypes used in this project.
