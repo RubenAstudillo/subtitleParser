@@ -1,5 +1,14 @@
--- |Common ADT for the project. Also serves for provide instance declaration for
---the ADT.
+-- |
+-- Module      : Text.Subtitles.Datatypes
+-- Copyright   : Ruben Astudillo 2012
+-- License     : BSD3
+--
+-- Maintainer  : ruben.astud@gmail.com
+-- Portability : unknown
+--
+-- Common ADT for the project. Also serves as a place to  provide instance
+-- declaration for the ADTs.
+
 module Text.Subtitles.Datatypes where
 
 import Data.List (intercalate)
@@ -17,10 +26,12 @@ data Range = Range
   , to   :: Time
   } deriving (Eq, Ord)
 
+-- | The core of the parser. each one of the constructor representing one part
+-- of the Line
 data Line = Line
-  { index :: Int
-  , time  :: Range
-  , subs  :: Text
+  { index  :: Int
+  , range  :: Range
+  , subs   :: Text
   } deriving (Eq, Ord)
 
 type Subtitles = [Line]
