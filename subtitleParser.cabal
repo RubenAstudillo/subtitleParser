@@ -23,7 +23,7 @@ Flag developer
   Default: False
 
 library
-  build-depends: base,
+  build-depends: base 
                  containers,
                  text >= 0.11.1.5,
                  attoparsec
