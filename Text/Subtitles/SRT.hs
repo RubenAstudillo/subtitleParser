@@ -6,13 +6,16 @@
 -- Maintainer  : ruben.astud@gmail.com
 -- Portability : unknown
 --
--- A basic parser for .srt files (subtitles) based on 'Attoparsec' and 'Text'
+-- A basic parser for .srt files (subtitles) based on 'Attoparsec' and 'T.Text'
 
 module Text.Subtitles.SRT 
   (
   -- * Terminology of the module
   -- $example
   
+  -- * Re-exported Datatypes
+  module Text.Subtitles.Datatypes,
+
   -- * Main parsers
   parseSubtitles,
   parseSingleLine

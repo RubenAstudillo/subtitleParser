@@ -7,12 +7,16 @@
 -- Portability : unknown
 --
 -- Common ADT for the project. Also serves as a place to  provide instance
--- declaration for the ADTs.
+-- declarations for the ADTs.
 
 module Text.Subtitles.Datatypes 
   (
+  -- * Re-exported datatypes.
+  module Data.Attoparsec.Text,
+  module Data.Text,
+
   -- * Datatypes
-  Subtitles(..),
+  Subtitles,
   Line(..),
   Range(..),
   Time(..)
@@ -20,6 +24,7 @@ module Text.Subtitles.Datatypes
 
 import Data.List (intercalate)
 import Data.Text (Text, unpack)
+import Data.Attoparsec.Text (Parser)
 
 data Time = Time
   { hour    :: Int
