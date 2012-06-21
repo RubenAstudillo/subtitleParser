@@ -25,8 +25,6 @@ import Prelude hiding (takeWhile)
 import Control.Applicative
 import Data.Attoparsec.Text 
 import qualified Data.Text as T
-import Data.Char (isPrint)
-import Control.Monad
 -- in project modules
 import Text.Subtitles.Datatypes
 
