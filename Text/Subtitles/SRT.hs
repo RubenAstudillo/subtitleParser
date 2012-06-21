@@ -6,7 +6,7 @@
 -- Maintainer  : ruben.astud@gmail.com
 -- Portability : unknown
 --
--- A basic parser for .srt files (subtitles) based on 'Attoparsec' and 'T.Text'
+-- A basic parser for .srt files (subtitles) based on 'Attoparsec' and 'Text'
 
 module Text.Subtitles.SRT 
   (
@@ -71,7 +71,7 @@ eol = endOfLine
 parseRange :: Parser Range
 parseRange = Range <$> parseTime <* arrowString <*> parseTime 
   where
-    arrowString :: Parser T.Text
+    arrowString :: Parser Text
     arrowString = string (T.pack " --> ") 
 
 parseTime :: Parser Time
@@ -82,7 +82,7 @@ parseTime = Time <$> numDot <*> numDot <*> decimal <* char ',' <*> decimal
 
 {- return the dialog checking for newlines that could be in there. that why is
  - written in a monad instead of applicative. more efficient version welcome -}
-parseSubs :: T.Text -> Parser T.Text
+parseSubs :: Text -> Parser Text
 parseSubs t = do 
   line <- takeWhile1 (not . isEndOfLine)
   endOfLine
