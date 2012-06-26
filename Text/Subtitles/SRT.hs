@@ -14,7 +14,7 @@ module Text.Subtitles.SRT
   -- $example
   
   -- * Re-exported Datatypes
-  module Text.Subtitles.Datatypes,
+  module Text.Subtitles.SRT.Datatypes,
 
   -- * Main parsers
   parseSubtitles,
@@ -26,12 +26,12 @@ import Control.Applicative
 import Data.Attoparsec.Text 
 import qualified Data.Text as T
 -- in project modules
-import Text.Subtitles.Datatypes
+import Text.Subtitles.SRT.Datatypes
 
 -- $example
 --
 -- All the sections of a Line have their corresponding ADT in
--- "Text.Subtitles.Datatypes"
+-- "Text.Subtitles.SRT.Datatypes"
 -- 
 -- >2
 -- >00:00:50,050 --> 00:00:52,217

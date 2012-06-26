@@ -1,15 +1,15 @@
 -- |
--- Module      : Text.Subtitles.Datatypes
+-- Module      : Text.Subtitles.SRT.Datatypes
 -- Copyright   : Ruben Astudillo 2012
 -- License     : BSD3
 --
 -- Maintainer  : ruben.astud@gmail.com
 -- Portability : unknown
 --
--- Common ADT for the project. Also serves as a place to  provide instance
+-- ADT for .srt files. Also serves as a place to  provide instance
 -- declarations for the ADTs.
 
-module Text.Subtitles.Datatypes 
+module Text.Subtitles.SRT.Datatypes 
   (
   -- * Re-exported datatypes.
   module Data.Attoparsec.Text,
