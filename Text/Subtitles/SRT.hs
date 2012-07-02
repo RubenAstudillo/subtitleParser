@@ -17,7 +17,7 @@ module Text.Subtitles.SRT
   module Text.Subtitles.SRT.Datatypes,
 
   -- * Main parsers
-  parseSubtitles,
+  parseSRT,
   parseSingleLine
   ) where
 
@@ -50,14 +50,14 @@ import Text.Subtitles.SRT.Datatypes
 
 -- |Main Parser, gives you a list of all the Lines of the subtitle. It fails if
 --  the subtitle doesn't have any Lines.
-parseSubtitles :: Parser Subtitles
-parseSubtitles = many1 parseSingleLine
+parseSRT :: Parser Subtitles
+parseSRT = many1 parseSingleLine
 
 -- |The individual Line parser. given the upper example return the
 -- corresponding Line representation
 parseSingleLine :: Parser Line
 parseSingleLine = 
-  Line <$> parseIndex <*> parseRange <* eol <*> parseSubs T.empty
+  Line <$> parseIndex <*> parseRange <* eol <*> parseDialog T.empty
 
 parseIndex :: Parser Int
 parseIndex = decimal <* eol
@@ -80,13 +80,13 @@ parseTime = Time <$> numDot <*> numDot <*> decimal <* char ',' <*> decimal
 
 {- return the dialog checking for newlines that could be in there. that why is
  - written in a monad instead of applicative. more efficient version welcome -}
-parseSubs :: Text -> Parser Text
-parseSubs t = do 
+parseDialog :: Text -> Parser Text
+parseDialog t = do 
   line <- takeWhile1 (not . isEndOfLine)
   endOfLine
   let lineState = T.append t (T.snoc line '\n')
   next <- anyChar
   case next of
     '\n' -> return lineState 
-    _    -> parseSubs (T.snoc lineState next)
+    _    -> parseDialog (T.snoc lineState next)
 

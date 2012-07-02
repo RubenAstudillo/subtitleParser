@@ -43,7 +43,7 @@ data Range = Range
 data Line = Line
   { index  :: Int
   , range  :: Range
-  , subs   :: Text
+  , dialog   :: Text
   } deriving (Eq, Ord)
 
 type Subtitles = [Line]
