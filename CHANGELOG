@@ -1,0 +1,7 @@
+0.2
+  - Basic support for .sub files added
+  - Separated Datatypes for .sub and .srt files
+0.1.2
+  - Now haddock documentation is build correctly
+0.1
+  - Initial release
