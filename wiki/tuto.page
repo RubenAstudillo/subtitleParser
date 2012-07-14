@@ -1,1 +1,22 @@
-# There
+Tutorial
+========
+
+Play a little bit
+-----------------
+
+I hope that the exposed API is simple enough so you can play with it a bit
+without too much disconcert, my goal was to make it accessible. Either way I'll
+analyze a example here
+
+Before that we need to make sure that all the corresponding modules are
+installed. If you have the haskell platform you should have the cabal program
+installed, then is just a matter of
+
+> cabal update
+> cabal install subtitleParser
+
+This will also install the corresponding dependencies as Text and Attoparsec.
+
+### SRT
+
+First thing

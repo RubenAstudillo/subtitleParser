@@ -1,1 +1,13 @@
-# Hello
+Why bother
+==========
+
+This package is an answer to a homework I keep doing over and over again for
+some little projects, so it made sense to me for it to be released so maybe
+somebody could benefit.
+
+Also I wanted to learn to use darcs (which you should try btw). I think there
+isn't a better way to know well a dvcs as having a little pet project to mess
+around with it.
+
+The spirit of this package is that should prioritize readability over anything
+else, also all patches are welcome
