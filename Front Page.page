@@ -1,12 +1,22 @@
-# Welcome to Gitit!
+Welcome to Subtitle Parser Wiki!
+================================
 
-This is the front page of your new gitit wiki.  You can edit this
-page by clicking on the "edit" tab at the top of the screen.
-For instructions on how to make a link to another wiki page, see [the
-Help page](Help#wiki-links). To create a new wiki page, just create a
-link to it and follow the link.
+About it
+--------
 
-Help is always available through the "Help" link in the sidebar.
-More details on installing and configurating gitit are available
-in the [Gitit User's Guide]().
+This package is a collection of parsers for the most common subtitles files on
+the wild. It aims to be readable over performant. That doesn't mean it doesn't
+offer some really good speed.
 
+It expect to at least the following formats:
+
+* SRT
+* SUB
+* ASS (Patches welcome!)
+
+Read more
+---------
+
+* [Why should you use it.](Why)
+* [Technical decitions.](Tech)
+* [Tutorial](Tuto)
