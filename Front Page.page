@@ -1,9 +1,6 @@
 Welcome to Subtitle Parser Wiki!
 ================================
 
-About it
---------
-
 This package is a collection of parsers for the most common subtitles files on
 the wild. It aims to be readable over performant. That doesn't mean it doesn't
 offer some really good speed.
@@ -13,6 +10,10 @@ It expect to at least the following formats:
 * SRT
 * SUB
 * ASS (Patches welcome!)
+
+Each of them available as a haskell module on hackage under the name of subtitleParser
+under the BSD license. Each module contains corresponding ADT, deconstruction functions
+and parser. Give it a try! :-) 
 
 Read more
 ---------
