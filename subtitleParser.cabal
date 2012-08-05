@@ -33,7 +33,7 @@ library
                    Text.Subtitles.SUB
                    Text.Subtitles.SUB.Datatypes
 
-  ghc-options: -Wall
+  ghc-options: 
 
   if flag(developer)
     ghc-prof-options: -auto-all
