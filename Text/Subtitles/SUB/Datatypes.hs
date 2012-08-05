@@ -35,8 +35,9 @@ type Frame = Int
 -- .sub utilize a non-standard RGB format, is better to keep them as Text 
 type Color = Text
 
--- |Optional property of text 
-data TextProperty = Italic | Bold | UnderLine | Stroked | C Color
+-- |Optional property of text, the constructor should be clear.
+data TextProperty = Italic | Bold | UnderLine | Stroked 
+                  | C Color -- ^ This is just text because is non-standard RGB
   deriving (Show)
 
 data Line = Line { startFrame :: Frame,

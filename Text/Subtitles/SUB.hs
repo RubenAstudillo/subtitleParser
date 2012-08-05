@@ -6,7 +6,7 @@
 -- Maintainer  : ruben.astud@gmail.com
 -- Portability : unknown
 --
--- A basic parser for .sub files (subtitles) based on 'Attoparsec' and 'Text'
+-- A basic parser for .sub files (microDVD) based on 'Attoparsec' and 'Text'
 
 module Text.Subtitles.SUB 
   (
@@ -30,12 +30,16 @@ import Text.Subtitles.SUB.Datatypes
 
 -- $example
 --
+-- I strongly recommend to understand the 'Line' Datatype , which is the
+-- foundation of this module.
+--
 -- Refering to the parts of a single line of a subtitle file.
 --
--- >{50}{100}Drama here!
+-- >{50}{100}{y:i}Drama here!
 --
--- the first to numbers correspond to the frame in which the text Drama here!
--- is displayed. 
+-- The first to numbers correspond to the frame in which the text Drama here!
+-- is displayed. Note that this implementation support the optional flags about
+-- text format and color
 
 frame :: Parser Frame
 frame = enclosed decimal
