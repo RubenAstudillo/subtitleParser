@@ -85,8 +85,10 @@ parseDialog t = do
   line <- takeWhile1 (not . isEndOfLine)
   endOfLine
   let lineState = T.append t (T.snoc line '\n')
-  next <- anyChar
+  next <- peekChar
   case next of
-    '\n' -> return lineState 
-    _    -> parseDialog (T.snoc lineState next)
+    Nothing     -> return lineState 
+    (Just '\n') -> eol >> return lineState 
+    (Just _)    -> parseDialog lineState 
+
 
