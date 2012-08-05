@@ -17,6 +17,7 @@ description:
 extra-source-files:
     LICENSE
     THANKS
+    CHANGELOG
 
 Flag developer
   Description: Whether to build the library in development mode

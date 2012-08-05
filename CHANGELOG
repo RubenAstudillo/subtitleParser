@@ -1,3 +1,10 @@
+0.3
+  - Show instances for SRT now are simpler and more related on how is defined
+    the ADT. this is a PARSER not a prettyPrinter nor a valid .srt producer
+  - SUB files added support for optional flag as underline and bold
+  - SRT's parseDialog now uses peekChar so attoparsec dependency is upgraded and
+    the code is cleaner. As a bug we provide for now parseOnly' until is fixed
+    upstream
 0.2
   - Basic support for .sub files added
   - Separated Datatypes for .sub and .srt files
