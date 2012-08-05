@@ -1,5 +1,5 @@
 name:            subtitleParser
-version:         0.2
+version:         0.3
 license:         BSD3
 license-file:    LICENSE
 category:        Text, Parsing
@@ -26,7 +26,7 @@ library
   build-depends: base < 5,
                  containers,
                  text >= 0.11.1.5,
-                 attoparsec
+                 attoparsec >= 0.10.2.0
 
   exposed-modules: Text.Subtitles.SRT
                    Text.Subtitles.SRT.Datatypes
