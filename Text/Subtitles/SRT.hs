@@ -57,7 +57,7 @@ parseSRT = many1 parseSingleLine
 -- corresponding Line representation
 parseSingleLine :: Parser Line
 parseSingleLine = 
-  Line <$> parseIndex <*> parseRange <* eol <*> parseDialog T.empty
+  Line <$> parseIndex <*> parseRange <*> parseDialog T.empty
 
 parseIndex :: Parser Int
 parseIndex = decimal <* eol
@@ -67,7 +67,7 @@ eol = endOfLine
 
 {- Is clear that this just aplies parseTime breaking down the "-->" string -}
 parseRange :: Parser Range
-parseRange = Range <$> parseTime <* arrowString <*> parseTime 
+parseRange = Range <$> parseTime <* arrowString <*> parseTime <* skipSpace
   where
     arrowString :: Parser Text
     arrowString = string (T.pack " --> ") 
