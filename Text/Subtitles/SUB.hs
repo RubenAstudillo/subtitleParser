@@ -23,6 +23,8 @@ module Text.Subtitles.SUB
 
 import Control.Applicative
 import Data.Attoparsec.Text
+import Data.Text (pack, Text)
+import Data.Maybe (Maybe)
 
 import Text.Subtitles.SUB.Datatypes
 
@@ -36,14 +38,31 @@ import Text.Subtitles.SUB.Datatypes
 -- is displayed. 
 
 frame :: Parser Frame
-frame = char '{' *> decimal <* char '}'
+frame = enclosed decimal
 
 -- | Given the example return the corresponding Line representation. At the
 -- moment this not handles modifiers as underlines or bold text
 parseSingleLine :: Parser Line 
-parseSingleLine = Line <$> frame <*> frame <*> takeTill isEndOfLine
+parseSingleLine = Line <$> frame <*> frame <*> parseProperty <*> takeTill isEndOfLine
 
 -- | Main parser of .sub files, given a .sub file it return a list of the dialog
 -- lines
 parseSUB :: Parser Subtitles
 parseSUB = sepBy1 parseSingleLine endOfLine
+
+parseProperty :: Parser (Maybe TextProperty) 
+parseProperty = option Nothing (Just <$> enclosed (choice allProp))
+  where
+    bold      = matchText "y:b" *> pure Bold
+    italic    = matchText "y:i" *> pure Italic
+    underline = matchText "y:u" *> pure UnderLine
+    stroked   = matchText "y:s" *> pure Stroked
+    color     = matchText "C:"  *> (C <$> takeWhile1 ('}' /=))
+    allProp   = [bold, italic, underline, stroked, color]
+
+-- All .sub command are enclosed in bracket. Worth defining.
+enclosed :: Parser a -> Parser a
+enclosed p = char '{' *> p <* char '}'
+
+matchText :: String -> Parser Text
+matchText s = string (pack s)
