@@ -50,7 +50,7 @@ import Text.Subtitles.SRT.Datatypes
 -- "Text.Subtitles.SRT.Datatypes"
 -- 
 -- >2
--- >00:00:50,050 --> 00:00:52,217
+-- >00:00:50,050 --> 00:00:52,217 X1:1 X2:2 Y1:1 Y2:2
 -- >Drama here
 --
 -- The whole Line is represented in the 'Line' ADT which constructors
@@ -61,7 +61,10 @@ import Text.Subtitles.SRT.Datatypes
 --
 -- * The second one is called 'Range', which correspond to two separated 'Time'.
 --
--- * The last one is the 'subs'. which is just Text and correspond to the third
+-- * After the range is an optional field called Rectangle which says what
+--   geometry should the text obey.
+--
+-- * The last one is the 'subs'. Which is just Text and correspond to the third
 --   constructor of 'Line'.
 
 -- |Main Parser, gives you a list of all the Lines of the subtitle. It fails if
