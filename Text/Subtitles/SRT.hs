@@ -10,6 +10,9 @@
 
 module Text.Subtitles.SRT 
   (
+  -- * Don't use parseOnly!
+  -- $noParseOnly 
+  
   -- * Terminology of the module
   -- $example
   
@@ -18,15 +21,28 @@ module Text.Subtitles.SRT
 
   -- * Main parsers
   parseSRT,
-  parseSingleLine
+  parseSingleLine,
+
+  -- * Temporal solutions
+  parseOnly'
   ) where
 
 import Prelude hiding (takeWhile)
 import Control.Applicative
-import Data.Attoparsec.Text 
+import Data.Attoparsec.Text hiding (parseOnly)
 import qualified Data.Text as T
 -- in project modules
 import Text.Subtitles.SRT.Datatypes
+
+-- $noParseOnly
+--
+-- This module uses now peekChar in parseDialog, which replaces the ad-hoc
+-- method used before. As a consequence it doesn't play well with
+-- Data.Attoparsec.Text.parseOnly on some conditions.
+--
+-- You should use just 'parse' or the parseOnly' function I provide to avoid
+-- problems until further notice. /Hopefully/ in the next version of attoparsec
+-- this will be solved , so keep an eye for removal!.
 
 -- $example
 --
@@ -64,6 +80,11 @@ parseIndex = decimal <* eol
 
 eol :: Parser ()
 eol = endOfLine 
+
+-- |This version avoid the problems associated with peekChar and thus is safe to
+-- use in this module. Subject to removal once parseOnly is fixed.
+parseOnly' :: Parser a -> Text -> Either String a
+parseOnly' p t = eitherResult $ feed (parse p t) T.empty
 
 {- Is clear that this just aplies parseTime breaking down the "-->" string -}
 parseRange :: Parser Range
