@@ -73,7 +73,7 @@ parseSRT = many1 parseSingleLine
 -- corresponding Line representation
 parseSingleLine :: Parser Line
 parseSingleLine = 
-  Line <$> parseIndex <*> parseRange <*> parseDialog T.empty
+  Line <$> parseIndex <*> parseRange <*> optionalGeometry <*> parseDialog T.empty
 
 parseIndex :: Parser Int
 parseIndex = decimal <* eol
@@ -92,6 +92,14 @@ parseRange = Range <$> parseTime <* arrowString <*> parseTime <* skipSpace
   where
     arrowString :: Parser Text
     arrowString = string (T.pack " --> ") 
+
+{- the order X1 X2 Y1 Y2 seems to be enforced, so we can check only for order
+ - instead of keywords -}
+optionalGeometry :: Parser (Maybe Rectangle)
+optionalGeometry = option Nothing (Just <$> rectangle <* eol)
+  where rectangle = R <$> valueSpace <*> valueSpace <*> valueSpace <*> value
+        value   = letter *> digit *> char ':' *> decimal 
+        valueSpace = value <* space
 
 parseTime :: Parser Time
 parseTime = Time <$> numDot <*> numDot <*> decimal <* char ',' <*> decimal

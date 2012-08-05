@@ -1,5 +1,5 @@
 1
-00:02:26,407 --> 00:02:31,356  
+00:02:26,407 --> 00:02:31,356  X1:100 X2:100 Y1:100 Y2:100
 <font color="#00ff00">Detta handlar om min storebrors</font> 
 <b><i><u>kriminella beteende och foersvinnade.</u></i></b>
 

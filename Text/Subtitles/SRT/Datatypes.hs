@@ -17,6 +17,7 @@ module Text.Subtitles.SRT.Datatypes
 
   -- * Datatypes
   Subtitles,
+  Rectangle(..),
   Line(..),
   Range(..),
   Time(..)
@@ -25,6 +26,11 @@ module Text.Subtitles.SRT.Datatypes
 import Data.List (intercalate)
 import Data.Text (Text, unpack)
 import Data.Attoparsec.Text (Parser)
+
+-- |This represent the position on screen of the Line. Is usually optional in
+-- the file.
+data Rectangle = R { x1 :: Int, x2 :: Int, y1 :: Int, y2 :: Int}
+  deriving (Eq, Ord, Show)
 
 data Time = Time
   { hour    :: Int
@@ -43,6 +49,7 @@ data Range = Range
 data Line = Line
   { index  :: Int
   , range  :: Range
+  , geometry :: Maybe Rectangle 
   , dialog   :: Text
   } deriving (Eq, Ord, Show)
 
