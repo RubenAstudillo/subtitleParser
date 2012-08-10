@@ -1,5 +1,5 @@
 name:            subtitleParser
-version:         0.3
+version:         0.4
 license:         BSD3
 license-file:    LICENSE
 category:        Text, Parsing
@@ -18,7 +18,6 @@ extra-source-files:
     LICENSE
     THANKS
     CHANGELOG
-    test/TestSUB.hs
 
 Flag developer
   Description: Whether to build the library in development mode
