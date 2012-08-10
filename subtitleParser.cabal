@@ -18,6 +18,10 @@ extra-source-files:
     LICENSE
     THANKS
     CHANGELOG
+    test/TestSUB.hs
+    test/example.srt
+    test/example.sub
+    test/TestSRT.hs
 
 Flag developer
   Description: Whether to build the library in development mode
