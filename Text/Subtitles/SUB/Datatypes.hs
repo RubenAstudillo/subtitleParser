@@ -38,11 +38,11 @@ type Color = Text
 -- |Optional property of text, the constructor should be clear.
 data TextProperty = Italic | Bold | UnderLine | Stroked 
                   | C Color -- ^ This is just text because is non-standard RGB
-  deriving (Show)
+  deriving (Show, Eq)
 
 data Line = Line { startFrame :: Frame,
                    finalFrame :: Frame,
                    property   :: Maybe TextProperty, 
                    dialog     :: Text }
-  deriving (Show)
+  deriving (Show, Eq)
 
