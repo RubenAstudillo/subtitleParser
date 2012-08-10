@@ -113,14 +113,16 @@ parseTime = Time <$> numDot <*> numDot <*> decimal <* char ',' <*> decimal
 {- return the dialog checking for newlines that could be in there. That why is
  - written in a monad instead of applicative. More efficient version welcome -}
 parseDialog :: Text -> Parser Text
-parseDialog t = do 
+parseDialog stateLine = do 
   line <- takeWhile1 (not . isEndOfLine)
   endOfLine
-  let lineState = T.append t (T.snoc line '\n') --takeWhile1 didn't consume \n
+  let stateCurrent = T.append stateLine line
+      lineState = T.snoc stateCurrent '\n' --takeWhile1 didn't consume \n
   next <- peekChar
   case next of
-    Nothing     -> return lineState 
-    (Just '\n') -> eol >> return lineState 
-    (Just _)    -> parseDialog lineState 
+    Nothing     -> return stateCurrent  -- the end of the file
+    (Just '\n') -> eol >> return stateCurrent -- End of this Line, new Line coming.
+    (Just _)    -> parseDialog lineState {- in between lines, the next one belong to this Line
+                                         explicit eol required -}
 
 
