@@ -1,3 +1,7 @@
+0.4
+  - Optional flags for SRT added, this modify where the text is displayed
+  - Optional flags for SUB added.
+  - Test case for the two parser based on the examples and HUnit
 0.3
   - Show instances for SRT now are simpler and more related on how is defined
     the ADT. this is a PARSER not a prettyPrinter nor a valid .srt producer
