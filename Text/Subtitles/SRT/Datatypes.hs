@@ -23,7 +23,6 @@ module Text.Subtitles.SRT.Datatypes
   Time(..)
   ) where
 
-import Data.List (intercalate)
 import Data.Text (Text, unpack)
 import Data.Attoparsec.Text (Parser)
 
