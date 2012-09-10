@@ -17,8 +17,8 @@ module Text.Subtitles.SRT.Datatypes
 
   -- * Datatypes
   Subtitles,
-  Rectangle(..),
   Line(..),
+  Rectangle(..),
   Range(..),
   Time(..)
   ) where
