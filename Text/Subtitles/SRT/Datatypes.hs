@@ -52,5 +52,6 @@ data Line = Line
   , dialog   :: Text
   } deriving (Eq, Ord, Show)
 
+-- |A subtitle is just a List of independent Lines that appear on screen
 type Subtitles = [Line]
 
