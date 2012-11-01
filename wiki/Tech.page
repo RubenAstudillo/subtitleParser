@@ -5,7 +5,9 @@ The original author decided to use the strict version of Data.Text and
 attoparsec for a couple of reasons that I am going to list here.
 
 * Unicode: Since a lot of characters don't play nice with other encoding
-(apostrophes) I had to got with the option that provided support for them.
+(apostrophes, German characters) I had to got with the option that provided
+support for them.
+
 * Attoparsec: Related to the next point. The strict version of the text parser
 provides partial results which is a nice when providing some control over when
 to consume, also is more predictable.
