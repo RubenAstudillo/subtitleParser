@@ -11,10 +11,11 @@ support for them.
 * Attoparsec: Related to the next point. The strict version of the text parser
 provides partial results which is a nice when providing some control over when
 to consume, also is more predictable.
+
 * Strict: This is going to force the use of strict IO (avoiding lazy IO) or
 conduits. This latter ones play particularly well with attoparsec partial input.
 Also we can avoid some space leaks associated with lazy IO.
 
 In the end I didn't use lazy text nor lazy attoparsec because subtitle files
 normally are read from a hard-disk which is not a source of information where
-laziness is valuable for its guaranties 
+laziness is valuable for its guaranties.
