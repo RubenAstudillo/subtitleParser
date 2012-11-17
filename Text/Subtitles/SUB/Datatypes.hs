@@ -16,11 +16,11 @@ module Text.Subtitles.SUB.Datatypes
   module Data.Text,
   
   -- * Datatypes
-  Frame,
   Subtitles,
-  Color,
+  Line(..),
   TextProperty(..),
-  Line(..)
+  Frame,
+  Color
   ) where
 
 import Data.Text (Text)

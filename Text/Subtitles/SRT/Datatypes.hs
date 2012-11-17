@@ -18,9 +18,9 @@ module Text.Subtitles.SRT.Datatypes
   -- * Datatypes
   Subtitles,
   Line(..),
-  Rectangle(..),
   Range(..),
-  Time(..)
+  Time(..),
+  Rectangle(..)
   ) where
 
 import Data.Text (Text, unpack)
@@ -46,10 +46,10 @@ data Range = Range
 -- | The core of the parser. each one of the constructor representing one part
 -- of the Line
 data Line = Line
-  { index  :: Int
-  , range  :: Range
-  , geometry :: Maybe Rectangle 
-  , dialog   :: Text
+  { index  :: Int -- ^The absolute order of this line.
+  , range  :: Range -- ^The interval of time that the line is shown.
+  , geometry :: Maybe Rectangle  -- ^Sometimes text shouldn't be on the lower center.
+  , dialog   :: Text -- ^what to show in screen
   } deriving (Eq, Ord, Show)
 
 -- |A subtitle is just a List of independent Lines that appear on screen
