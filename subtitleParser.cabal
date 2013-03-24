@@ -31,7 +31,7 @@ library
   build-depends: base < 5,
                  containers,
                  text >= 0.11.1.5,
-                 attoparsec >= 0.10.2.0
+                 attoparsec >= 0.10.2.1
 
   exposed-modules: Text.Subtitles.SRT
                    Text.Subtitles.SRT.Datatypes

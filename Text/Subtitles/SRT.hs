@@ -10,9 +10,6 @@
 
 module Text.Subtitles.SRT 
   (
-  -- * Don't use parseOnly!
-  -- $noParseOnly 
-  
   -- * Terminology of the module
   -- $example
   
@@ -23,26 +20,17 @@ module Text.Subtitles.SRT
   parseSRT,
   parseSingleLine,
 
-  -- * Temporal solutions
+  -- * Deprecated
   parseOnly'
   ) where
 
 import Prelude hiding (takeWhile)
 import Control.Applicative
 import Data.Attoparsec.Text hiding (parseOnly)
+import qualified Data.Attoparsec.Text as DAT
 import qualified Data.Text as T
 -- in project modules
 import Text.Subtitles.SRT.Datatypes
-
--- $noParseOnly
---
--- This module uses now peekChar in parseDialog, which replaces the ad-hoc
--- method used before. As a consequence it doesn't play well with
--- Data.Attoparsec.Text.parseOnly on some conditions.
---
--- You should use just 'parse' or the parseOnly' function I provide to avoid
--- problems until further notice. /Hopefully/ in the next version of attoparsec
--- this will be solved , so keep an eye for removal!.
 
 -- $example
 --
@@ -76,7 +64,7 @@ parseSRT = many1 parseSingleLine
 -- corresponding Line representation
 parseSingleLine :: Parser Line
 parseSingleLine = 
-  Line <$> parseIndex <*> parseRange <*> optionalGeometry <*> parseDialog T.empty
+  Line <$> parseIndex <*> parseRange <*> optionalGeometry <*> parseDialog []
 
 parseIndex :: Parser Int
 parseIndex = decimal <* eol
@@ -84,10 +72,9 @@ parseIndex = decimal <* eol
 eol :: Parser ()
 eol = endOfLine 
 
--- |This version avoid the problems associated with peekChar and thus is safe to
--- use in this module. Subject to removal once parseOnly is fixed.
+{-# DEPRECATED parseOnly' "AttoParsec's parseOnly was broken before v0.10.2.1" #-}
 parseOnly' :: Parser a -> Text -> Either String a
-parseOnly' p t = eitherResult $ feed (parse p t) T.empty
+parseOnly' = DAT.parseOnly
 
 {- Is clear that this just aplies parseTime breaking down the "-->" string -}
 parseRange :: Parser Range
@@ -112,17 +99,15 @@ parseTime = Time <$> numDot <*> numDot <*> decimal <* char ',' <*> decimal
 
 {- return the dialog checking for newlines that could be in there. That why is
  - written in a monad instead of applicative. More efficient version welcome -}
-parseDialog :: Text -> Parser Text
-parseDialog stateLine = do 
+parseDialog :: [Text] -> Parser Text
+parseDialog stateLines = do 
   line <- takeWhile1 (not . isEndOfLine)
   endOfLine
-  let stateCurrent = T.append stateLine line
-      lineState = T.snoc stateCurrent '\n' --takeWhile1 didn't consume \n
-  next <- peekChar
-  case next of
-    Nothing     -> return stateCurrent  -- the end of the file
-    (Just '\n') -> eol >> return stateCurrent -- End of this Line, new Line coming.
-    (Just _)    -> parseDialog lineState {- in between lines, the next one belong to this Line
-                                         explicit eol required -}
-
-
+  let stateLines' = line : stateLines
+      dialog_complete = return $ T.concat $ reverse stateLines' 
+  -- the end of the file
+  (endOfInput *> dialog_complete) 
+    -- End of this Line, new Line coming.
+    <|> (endOfLine *> dialog_complete)
+    -- In between lines, the next one belong to this Line,explicit eol required
+    <|> parseDialog (T.singleton '\n' : stateLines')
