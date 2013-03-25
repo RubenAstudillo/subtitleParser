@@ -4,6 +4,7 @@ import Test.HUnit
 import Test.HUnit.Text
 import Data.Text.IO as TI 
 import Data.Text (pack)
+import Data.Attoparsec.Text
 import Text.Subtitles.SRT
 
 main :: IO ()
@@ -12,7 +13,7 @@ main = runTestTT (TestList [test srtAssert]) >> return ()
 srtAssert :: Assertion
 srtAssert = do
   srtContents <- TI.readFile "./test/example.srt"
-  case parseOnly' parseSRT srtContents of
+  case parseOnly parseSRT srtContents of
     Left _ -> assertFailure "Error while parsing the example .srt"
     Right r -> assertEqual "Parser didn't produce the expected value" expectedValue r
 
