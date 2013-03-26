@@ -1,3 +1,6 @@
+0.5
+  - the hack of avoiding peekChar in attoparsec was fixed upstream, now we can
+    deprecate the hack. This changed the API so we had to bump.
 0.4
   - Optional flags for SRT added, this modify where the text is displayed
   - Optional flags for SUB added.

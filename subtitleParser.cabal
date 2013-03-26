@@ -1,12 +1,12 @@
 name:            subtitleParser
-version:         0.4.1
+version:         0.5
 license:         BSD3
 license-file:    LICENSE
 category:        Text, Parsing
 author:          Ruben Astudillo  <ruben.astud@gmail.com>
 maintainer:      Ruben Astudillo  <ruben.astud@gmail.com>
 stability:       experimental
-tested-with:     GHC == 7.4.2
+tested-with:     GHC == 7.6.2
 synopsis:        A parser for .srt and .sub files
 cabal-version:   >= 1.8
 homepage:        https://patch-tag.com/r/rubenAst/subtitleParser/home
